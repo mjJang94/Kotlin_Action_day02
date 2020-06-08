@@ -54,3 +54,19 @@ abstract class Animated {
 기본적으로 java와 같은 public, protected, private 변경자가 있다. 하지만 코틀린의 특이점은 아무 변경자가 없는 경우 선언은 모두 public이 되어버린다.   
 자바의 기본 가시성인 패키지 개념이 코틀린에는 없다. 코틀린에서는 그저 네임스페이스를 관리하기 위한 용도로만 사용한다. 이러한 패키지 개념의 부재로인한 대안으로 코틀린에는 internal이라는 가시성 변경자를 도입했다. internal은 **모듈 내부에서만 볼 수 있음** 이라는 특징을 가진다.
 그리고 자바와 코틀린의 protected는 다르다. java에서는 같은 패키지 안에서 protected 멤버에 접근할 수 있지만, 코틀린에서는 그렇지 않다. protected 멤버는 오직 어떤 클래스나 그 클래스를 상속한 클래스 안에서만 보인다.
+
+<pre>
+<code>
+internal open class TalkativeButton : Focusable {
+  private fun yell() = println("Hey!")
+  private fun whisper() = println("Let's a talk!")
+}
+
+fun TalkativeButton.giveSppech() { //------ public 함수인 giveSpeech 안에서 그보다 가시성이 더 낮은 타입인 TalkativeButton을 참조하지 못하게 함
+
+  yell() //----- TalkativeButton의 private 멤버라서 오류
+  
+  whisper() //----- TalkativeButton의 protected 멤버라서 오류
+}
+</code>
+</pre>
