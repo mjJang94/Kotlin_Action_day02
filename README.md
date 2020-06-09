@@ -48,7 +48,7 @@ abstract class Animated {
 - open (오버라이드할 수 있음)
 - abstract (반드시 오버라이드해야 함)
 - override (상위 클래스나 상위 인스턴스의 멤버를 오버라이드하는 중)
-=========
+
 # 가시성 변경자: 기본적으로 공개
 가시성 변경자는 코드 기반에 있는 선언에 대한 클래스 외부 접근을 제어한다. 어떤 클래스의 구현에 대한 접근을 제한함으로써 그 클래스에 의존하는 외부 코드를 꺠지 않고도 클래스 내부 구현을 변경할 수 있다.   
 기본적으로 java와 같은 public, protected, private 변경자가 있다. 하지만 코틀린의 특이점은 아무 변경자가 없는 경우 선언은 모두 public이 되어버린다.   
@@ -59,10 +59,10 @@ abstract class Animated {
 <code>
 internal open class TalkativeButton : Focusable {
   private fun yell() = println("Hey!")
-  private fun whisper() = println("Let's a talk!")
+  protected fun whisper() = println("Let's a talk!")
 }
 
-fun TalkativeButton.giveSppech() { //------ public 함수인 giveSpeech 안에서 그보다 가시성이 더 낮은 타입인 TalkativeButton을 참조하지 못하게 함
+fun TalkativeButton.giveSpeech() { //------ public 함수인 giveSpeech 안에서 그보다 가시성이 더 낮은 타입인 TalkativeButton을 참조하지 못하게 함
 
   yell() //----- TalkativeButton의 private 멤버라서 오류
   
